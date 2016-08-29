@@ -7,12 +7,10 @@ package client.resources;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import final1.ws.Goal;
-import final1.ws.Healthprofile;
-import final1.ws.People;
-import final1.ws.PeopleService;
-import final1.ws.Person;
-import final1.ws.Type;
+import client.domain.Goal;
+import client.domain.Healthprofile;
+import client.domain.Person;
+import client.domain.Type;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
 import java.io.DataInputStream;
@@ -60,9 +58,7 @@ public class Controllerz {
     UriInfo uriInfo;
     @Context
     Request request;
-
-  PeopleService service = new PeopleService();
-  People pService = service.getPeopleImplPort(); 	    
+	    
   ObjectMapper mapper = new ObjectMapper();
 		JSONObject obj;
 	    String arrayToJson = "";
@@ -415,13 +411,13 @@ public String distance(@PathParam("mls") String mls){
 	   String bk1 =  sendurl(tagt, "GET", "");
 	   int ii = 0;
 	   
-	   if(Double.parseDouble(dt[1])<Double.parseDouble(bk1)){
-	       ii=randInt(0, 4);
+	   if(Double.parseDouble(dt[1])>Double.parseDouble(bk1)){	       
+	   ii=randInt(5, 9);
 	       System.out.println("less "+ii);
 	       ds= getImage(ii);
 	   }
 	   else{
-	   ii=randInt(5, 9);
+	   ii=randInt(0, 4);
 	   System.out.println("more "+ii);
 	      ds= getImage(ii);
 	   }

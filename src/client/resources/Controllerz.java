@@ -411,7 +411,7 @@ public String distance(@PathParam("mls") String mls){
 	   String bk1 =  sendurl(tagt, "GET", "");
 	   int ii = 0;
 	   
-	   if(Double.parseDouble(dt[1])>Double.parseDouble(bk1)){	       
+	   if(Double.parseDouble(dt[1])<Double.parseDouble(bk1)){	       
 	   ii=randInt(5, 9);
 	       System.out.println("less "+ii);
 	       ds= getImage(ii);

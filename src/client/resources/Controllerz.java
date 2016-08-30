@@ -414,12 +414,12 @@ public String distance(@PathParam("mls") String mls){
 	   if(Double.parseDouble(dt[1])<Double.parseDouble(bk1)){	       
 	   ii=randInt(5, 9);
 	       System.out.println("less "+ii);
-	       ds= getImage(ii);
+	       ds= getImage(ii)+"~~"+"Keep going, only "+(Double.parseDouble(bk1)-Double.parseDouble(dt[1])+"km left.");
 	   }
 	   else{
 	   ii=randInt(0, 4);
 	   System.out.println("more "+ii);
-	      ds= getImage(ii);
+	      ds= getImage(ii)+"~~"+"BRAVO!!!";
 	   }
   }catch(Exception ex){
   ex.printStackTrace();

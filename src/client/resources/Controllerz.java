@@ -168,7 +168,7 @@ public String addUser(String dta){
 //Editing a person and his health profile
 @PUT
 @Path("/user")
-public String addMeasure(String dta){
+public String editUser(String dta){
     System.out.println("hp put "+dta);
     try {
 	    
@@ -280,6 +280,15 @@ public String getPersonhp(@PathParam("pid") int id){
 	   String bk1 =  sendurl(tagt, "GET", "");
 	   System.out.println("hpty "+bk1 + " "+id);
  return bk1;
+}
+
+@GET
+@Path("/authc/{auth}")
+@Produces({MediaType.APPLICATION_JSON ,  MediaType.APPLICATION_XML })
+public String authc(@PathParam("auth") String auth){
+   
+	   System.out.println("hpty "+auth);
+ return auth;
 }
 
 
@@ -560,3 +569,4 @@ String sendurl(String target, String mtd, String input){
 	return data;
 	}
 }
+

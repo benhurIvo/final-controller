@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 public class JavaNetURLRESTFulClient {
 
-	private static final String targetURL = "http://127.0.1.1:5700/sdelab/control";
+	private static final String targetURL = "http://192.168.1.108:5700/sdelab/runkip";
 	static String data = "";
 	public static void main(String[] args) {
 	    try {
@@ -30,8 +30,8 @@ public class JavaNetURLRESTFulClient {
 //		JSONObject obj;
 //		String st = "{\"pid\":\"4\",\"firstname\":\"ivo\",\"lastname\":\"ivan\",\"birthdate\":\"as\"}~~{\"wt\":\"4\"}~~{\"ht\":\"1\"}";
 //	
-		String in = "1~~22.712";
-		String tagt = targetURL+"/miles/"+in;
+		String inc = "love";
+		String tagt = targetURL+"/authc/"+inc;
 	   String bk1 =  sendurl(tagt, "GET", "");
 //	   //String bk1 =  sendurl("http://192.168.1.103:5700/sdelab/control/user_hp/1", "GET", "");
 //	   System.out.println("tag "+bk1);

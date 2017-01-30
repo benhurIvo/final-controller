@@ -418,7 +418,7 @@ public class Controllerz {
 	return ds;
     }
 
-//Getting distance run by the person
+//Getting pictures
     @GET
     @Path("/pic/{mls}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})

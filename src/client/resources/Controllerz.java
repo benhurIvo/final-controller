@@ -401,7 +401,7 @@ public class Controllerz {
 	return bk1;
     }
 
-//Getting distance run by the person, call runkeeper service
+//Getting distance run by the person
     @GET
     @Path("/miles/{authc}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -418,7 +418,7 @@ public class Controllerz {
 	return ds;
     }
 
-//Getting pictures, call flickr service
+//Getting distance run by the person, call runkeeper service
     @GET
     @Path("/pic/{mls}")
     @Produces({MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML})
@@ -465,7 +465,66 @@ public class Controllerz {
 	return randomNum;
     }
 
+//Getting an image from flickr
+    String getImage(int z) {
+	String flickrurl = "";
+	try {
+	    URLConnection uc = new URL("https://api.flickr.com/services/rest/?method=flickr.people.getPhotos&user_id=144072969@N04&api_key=9723df63a3417c3cc349482815058ec2").openConnection();
+	    DataInputStream dis = new DataInputStream(uc.getInputStream());
+	    // FileWriter fw = new FileWriter(new File("D:\\\\Hello1.xml"));
+	    String nextline;
+	    String[] servers = new String[10];
+	    String[] ids = new String[10];
+	    String[] secrets = new String[10];
+	    String dt = "";
+	    while ((nextline = dis.readLine()) != null) {
+		dt += nextline;
+	    }
+	    dis.close();
 
+	    byte[] byteArray = dt.getBytes("UTF-8");
+	    ByteArrayInputStream inputStream = new ByteArrayInputStream(byteArray);
+	    XMLInputFactory inputFactory = XMLInputFactory.newInstance();
+	    XMLEventReader r = inputFactory.createXMLEventReader(inputStream);
+
+	    int i = -1;
+	    while (r.hasNext()) {
+
+		XMLEvent event = r.nextEvent();
+		if (event.isStartElement()) {
+		    StartElement element = (StartElement) event;
+		    String elementName = element.getName().toString();
+		    if (elementName.equals("photo")) {
+			i++;
+			Iterator iterator = element.getAttributes();
+
+			while (iterator.hasNext()) {
+
+			    Attribute attribute = (Attribute) iterator.next();
+			    QName name = attribute.getName();
+			    String value = attribute.getValue();
+			    System.out.println("Attribute name/value: " + name + "/" + value);
+			    if ((name.toString()).equals("server")) {
+				servers[i] = value;
+				System.out.println("Server Value" + servers[0]);
+			    }
+			    if ((name.toString()).equals("id")) {
+				ids[i] = value;
+			    }
+			    if ((name.toString()).equals("secret")) {
+				secrets[i] = value;
+			    }
+			}
+		    }
+		}
+	    }
+	    flickrurl = servers[z] + "/" + ids[z] + "_" + secrets[z] + ".jpg";
+	    System.out.println("flickr " + flickrurl);
+	} catch (Exception ex) {
+	    Logger.getLogger(Controllerz.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	return flickrurl;
+    }
 
 //Method to send a url to the server
     String sendurl(String target, String mtd, String input) {
